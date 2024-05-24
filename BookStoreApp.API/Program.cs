@@ -1,21 +1,27 @@
+using BookStoreApp.API.Data;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+// Database configuration
+var connString = builder.Configuration.GetConnectionString("BookStoreDbConnection");
+builder.Services.AddDbContext<BookStoreDbContext>(options => options.UseSqlServer());
+
 builder.Services.AddControllers();
 
-// Configuring Swagger/OpenAPI 
+// Swagger/OpenAPI configuration
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Configure Serilog logging
+// Serilog logging configuration
 // ctx = configuration   lc = logging configuration
 builder.Host.UseSerilog((context, loggerConfig) =>
     loggerConfig.WriteTo.Console().ReadFrom.Configuration(context.Configuration));
 
-// Configure CORS Policy
+// CORS Policy configuration
 builder.Services.AddCors( options =>
 {
     options.AddPolicy("AllowAll", b => b.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
