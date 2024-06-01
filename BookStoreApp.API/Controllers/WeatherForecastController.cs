@@ -24,7 +24,6 @@ namespace BookStoreApp.API.Controllers
             _logger.LogInformation("Made call to Weather Endpoint");
             try
             {
-                throw new Exception("Hello from the Logging test exception");
                 return Enumerable.Range(1, 5).Select(index => new WeatherForecast
                 {
                     Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
