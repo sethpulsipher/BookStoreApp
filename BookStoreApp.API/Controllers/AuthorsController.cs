@@ -80,7 +80,11 @@ namespace BookStoreApp.API.Controllers
         {
             try
             {
-                
+                if (id != authorDto.Id)
+                {
+                    return BadRequest();
+                }
+
                 // Map author to DTO and set in variable
                 var author = await _context.Authors.FindAsync(id);
 
