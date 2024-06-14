@@ -20,25 +20,25 @@
 
         <div class="form-group">
             <label for="email">Email Address</label>
-            <InputText class="form-control" @bind-Value="RegistrationModel.Email"/>
+            <InputText class="form-control" @bind-Value="RegistrationModel.Email" id="email"/>
             <ValidationMessage For="@(() => RegistrationModel.Email)"/>
         </div>
         <br/>
         <div class="form-group">
             <label for="lastName">First Name</label>
-            <InputText class="form-control" @bind-Value="RegistrationModel.FirstName" />
+            <InputText class="form-control" @bind-Value="RegistrationModel.FirstName" id="lastName"/>
             <ValidationMessage For="@(() => RegistrationModel.FirstName)" />
         </div>
         <br />
         <div class="form-group">
             <label for="firstName">Last Name</label>
-            <InputText class="form-control" @bind-Value="RegistrationModel.LastName" />
+            <InputText class="form-control" @bind-Value="RegistrationModel.LastName" id="firstName"/>
             <ValidationMessage For="@(() => RegistrationModel.LastName)" />
         </div>
         <br />
         <div class="form-group">
             <label for="password">Password</label>
-            <InputText class="form-control" type="password" @bind-Value="RegistrationModel.Password" />
+            <InputText class="form-control" type="password" @bind-Value="RegistrationModel.Password" id="password"/>
             <ValidationMessage For="@(() => RegistrationModel.Password)" />
         </div>        
         

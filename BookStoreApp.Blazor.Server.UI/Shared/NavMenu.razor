@@ -9,36 +9,53 @@
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <nav class="flex-column">
+
         @* Home *@
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </div>
-        @* Authorized Items *@
+
         <AuthorizeView>
+            
             <Authorized>
-                @* Account *@
+                
+                @* Name *@
                 <div class="nav-item px-3">
                     <NavLink class="nav-link">
                         <span class="oi oi-person" aria-hidden="true"></span> @context.User?.Identity?.Name
                     </NavLink>
                 </div>
+
                 @* Log Out *@
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="users/logout">
-                        <span class="oi oi-arrow-circle-left" aria-hidden="true"></span> Log Out
+                        <span class="oi oi-account-logout" aria-hidden="true"></span> Log Out
                     </NavLink>
                 </div>
+                <hr/>
+
+                @* Authors *@
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="authors/">
+                        <span class="oi oi-person" aria-hidden="true"></span> Authors
+                    </NavLink>
+                </div>
+
             </Authorized>
+            
             <NotAuthorized>
-                @* User Login *@
+                
+                @* Login *@
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="users/login">
-                        <span class="oi oi-person" aria-hidden="true"></span> Login
+                        <span class="oi oi-account-login" aria-hidden="true"></span> Login
                     </NavLink>
                 </div>
+
             </NotAuthorized>
+            
         </AuthorizeView>
     </nav>
 </div>

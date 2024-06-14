@@ -13,13 +13,13 @@
 
         <div class="mb-2 form-group">
             <label for="email">Email Address</label>
-            <InputText class="form-control" @bind-Value="LoginModel.Email" />
+            <InputText class="form-control" @bind-Value="LoginModel.Email" id="email"/>
             <ValidationMessage For="@(() => LoginModel.Email)" />
         </div>
 
         <div class="mb-1 form-group">
             <label for="password">Password</label>
-            <InputText class="form-control" type="password" @bind-Value="LoginModel.Password" />
+            <InputText class="form-control" type="password" @bind-Value="LoginModel.Password" id="password"/>
             <ValidationMessage For="@(() => LoginModel.Password)" />
         </div>
 
