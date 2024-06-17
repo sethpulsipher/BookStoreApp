@@ -14,12 +14,15 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddBlazoredLocalStorage();
 // HttpClient to consume the BookStoreApp.API
 builder.Services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri("https://localhost:7206"));
+
 // Authentication 
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
-// Author CRUD operations
 builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<IBookService, BookService>();
+
 // Auto Mapper
 builder.Services.AddAutoMapper(typeof(MapperConfig));
+
 // Authenticating user login / logout
 builder.Services.AddScoped<ApiAuthenticationStateProvider>();
 // Add's this ApiAuthentication class ^ to the default one?

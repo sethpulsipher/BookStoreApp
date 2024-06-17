@@ -1,6 +1,7 @@
 ﻿@page "/authors/create/"
 @inject IAuthorService authorService
 @inject NavigationManager navManager
+@attribute [Authorize(Roles = "Administrator")]
 
 <PageTitle>New Author</PageTitle>
 
@@ -12,19 +13,19 @@
         <ValidationSummary/>
 
         <div class="form-group">
-            <label for="firstName">First Name</label>
+            <label class="form-label" for="firstName">First Name</label>
             <InputText class="form-control" @bind-Value="AuthorModel.FirstName" id="lastName"/>
             <ValidationMessage For="@(() => AuthorModel.FirstName)" />
         </div>
         
         <div class="form-group">
-            <label for="lastName">Last Name</label>
+            <label class="form-label" for="lastName">Last Name</label>
             <InputText class="form-control" @bind-Value="AuthorModel.LastName" id="lastName"/>
             <ValidationMessage For="@(() => AuthorModel.LastName)" />
         </div>
         
         <div class="form-group">
-            <label for="bio">Bio</label>
+            <label class="form-label" for="bio">Bio</label>
             <InputTextArea class="form-control" @bind-Value="AuthorModel.Bio" id="bio"/>
             <ValidationMessage For="@(() => AuthorModel.Bio)" />
         </div>
@@ -34,7 +35,7 @@
                 <span class="oi oi-pencil" aria-hidden="true"></span> Create
             </button>
 
-            <button @onclick="BackToList" class="mt-2 btn btn-outline-secondary">
+            <button type="button" @onclick="BackToList" class="mt-2 btn btn-outline-secondary">
                 <span class="oi oi-arrow-left" aria-hidden="true"></span> Back
             </button>
         </div>
@@ -43,21 +44,14 @@
 </div>
 
 @code {
-    private AuthorCreateDto AuthorModel = new AuthorCreateDto();
+    private AuthorCreateDto AuthorModel = new();
 
     private async Task HandleCreateAuthor()
     {
-        try
+        var response = await authorService.Create(AuthorModel);
+        if (response.Success)
         {
-            var response = await authorService.CreateAuthorAsync(AuthorModel);
-            if(response.Success)
-            {
-                BackToList();
-            }
-        }
-        catch (ApiException ex)
-        {
-
+            BackToList();
         }
     }
 

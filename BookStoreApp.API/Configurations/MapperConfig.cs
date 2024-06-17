@@ -17,16 +17,21 @@ namespace BookStoreApp.API.Configurations
         public MapperConfig()
         {
             // Author
-            CreateMap<AuthorCreateDto, Author>().ReverseMap(); // ReverseMap() method allows for 2 way mapping
             CreateMap<AuthorReadOnlyDto, Author>().ReverseMap();
+            CreateMap<AuthorDetailsDto, Author>().ReverseMap();
+            CreateMap<AuthorCreateDto, Author>().ReverseMap();
             CreateMap<AuthorUpdateDto, Author>().ReverseMap();
-            
-            // Book
-            CreateMap<Book, BookReadOnlyDto>().ForMember(q => q.AuthorName, d => d.MapFrom(map => $"{map.Author.FirstName} {map.Author.LastName}")).ReverseMap();
-            CreateMap<Book, BookDetailsDto>().ForMember(q => q.AuthorName, d => d.MapFrom(map => $"{map.Author.FirstName} {map.Author.LastName}")).ReverseMap();
 
+            // Book
             CreateMap<BookCreateDto, Book>().ReverseMap();
             CreateMap<BookUpdateDto, Book>().ReverseMap();
+
+            CreateMap<Book, BookReadOnlyDto>()
+                .ForMember(q => q.AuthorName, d => d.MapFrom(map => $"{map.Author.FirstName} {map.Author.LastName}"))
+                .ReverseMap();
+            CreateMap<Book, BookDetailsDto>()
+                .ForMember(q => q.AuthorName, d => d.MapFrom(map => $"{map.Author.FirstName} {map.Author.LastName}"))
+                .ReverseMap();
 
             // ApiUser
             CreateMap<UserDto, ApiUser>().ReverseMap();

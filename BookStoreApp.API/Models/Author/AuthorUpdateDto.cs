@@ -6,13 +6,15 @@ namespace BookStoreApp.API.Models.Author
     {
         [Required]
         [StringLength(50)]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [StringLength(250)]
-        public string Bio { get; set; } = string.Empty;
+        public string? Bio { get; set; }
     }
 }

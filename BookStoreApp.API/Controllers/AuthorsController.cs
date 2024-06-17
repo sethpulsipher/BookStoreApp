@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BookStoreApp.API.Data;
 using BookStoreApp.API.Models.Author;
 using AutoMapper;
 using BookStoreApp.API.Static;
 using Microsoft.AspNetCore.Authorization;
+using AutoMapper.QueryableExtensions;
 
 namespace BookStoreApp.API.Controllers
 {
@@ -51,12 +47,15 @@ namespace BookStoreApp.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<AuthorReadOnlyDto>> GetAuthor(int id)
+        public async Task<ActionResult<AuthorDetailsDto>> GetAuthor(int id)
         {
             try
             {
                 // Find the author
-                var author = await _context.Authors.FindAsync(id);
+                var author = await _context.Authors
+                    .Include(a => a.Books)
+                    .ProjectTo<AuthorDetailsDto>(_mapper.ConfigurationProvider)
+                    .FirstOrDefaultAsync(a => a.Id == id);
 
                 if (author == null)
                 {
@@ -64,10 +63,7 @@ namespace BookStoreApp.API.Controllers
                     return NotFound();
                 }
 
-                // Map author to DTO and set in variable
-                var authorDto = _mapper.Map<AuthorReadOnlyDto>(author);
-
-                return Ok(authorDto);
+                return Ok(author);
             }
             catch (Exception ex)
             {
@@ -81,49 +77,42 @@ namespace BookStoreApp.API.Controllers
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> PutAuthor(int id, AuthorUpdateDto authorDto)
         {
+            if (id != authorDto.Id)
+            {
+                return BadRequest();
+            }
+
+            // Map author to DTO and set in variable
+            var author = await _context.Authors.FindAsync(id);
+
+            if (author == null)
+            {
+                _logger.LogWarning($"Record Not Found: {nameof(PutAuthor)} - ID: {id}");
+                return NotFound();
+            }
+            // Map them
+            _mapper.Map(authorDto, author);
+            _context.Entry(author).State = EntityState.Modified;
+            _logger.LogInformation($"PUT Operation on Record: {id} - Success");
+
             try
             {
-                if (id != authorDto.Id)
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                if (!await AuthorExists(id))
                 {
-                    return BadRequest();
-                }
-
-                // Map author to DTO and set in variable
-                var author = await _context.Authors.FindAsync(id);
-
-                if (author == null)
-                {
-                    _logger.LogWarning($"Record Not Found: {nameof(PutAuthor)} - ID: {id}");
                     return NotFound();
                 }
-                // Map them
-                _mapper.Map(authorDto, author);
-                _context.Entry(author).State = EntityState.Modified;
-                _logger.LogInformation($"PUT Operation on Record: {id} - Success");
-
-                try
+                else
                 {
-                    await _context.SaveChangesAsync();
+                    _logger.LogError(ex, $"Error Performing PUT Operation in {nameof(PutAuthor)}.");
+                    return StatusCode(500, Messages.Error500Message);
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!await AuthorExists(id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+            }
 
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Error Performing PUT Operation in {nameof(PutAuthor)}.");
-                return StatusCode(500, Messages.Error500Message);
-            }
+            return NoContent();
         }
 
         //POST : Creating new author

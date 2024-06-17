@@ -31,7 +31,12 @@ namespace BookStoreApp.Blazor.Server.UI.Services.Base
             {
                 return new Response<Guid>() { Message = "Something went wrong, please try again.", Success = false };
             }
-
+            //500
+            if(apiException.StatusCode == 500)
+            {
+                return new Response<Guid>() { Message = "500 Server API Issue; ",ValidationErrors = apiException.Response, Success = false };
+            }
+            // All else..
             return new Response<Guid>() { Message = "Something went wrong, please try again.", Success = false };
         }
 
