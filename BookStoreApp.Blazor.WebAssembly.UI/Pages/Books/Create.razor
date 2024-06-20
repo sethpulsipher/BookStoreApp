@@ -1,0 +1,136 @@
+﻿@page "/books/create/"
+@inject IBookService bookService
+@inject IAuthorService authorService
+@inject NavigationManager navManager
+@attribute [Authorize(Roles = "Administrator")]
+
+<PageTitle>New Book</PageTitle>
+
+<h3>Add New Book</h3>
+
+<EditForm Model="BookModel" OnValidSubmit="BookCreateHandler">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="row">
+        <label class="form-label" for="title">Title</label>
+        <InputText class="form-control" @bind-Value="BookModel.Title" id="title" />
+        <ValidationMessage For="@(() => BookModel.Title)" />
+    </div>
+
+    <div class="row">
+        <label class="form-label" for="isbn">ISBN</label>
+        <InputText class="form-control" @bind-Value="BookModel.Isbn" id="isbn" />
+        <ValidationMessage For="@(() => BookModel.Isbn)" />
+    </div>
+
+    <div class="row">
+        <label class="form-label" for="price">Price</label>
+        <InputNumber class="form-control" @bind-Value="BookModel.Price" id="price" />
+        <ValidationMessage For="@(() => BookModel.Price)" />
+    </div>
+
+    <div class="row">
+        <label class="form-label" for="year">Year</label>
+        <InputNumber class="form-control" @bind-Value="BookModel.Year" id="year" />
+        <ValidationMessage For="@(() => BookModel.Year)" />
+    </div>
+
+    <div class="row">
+        <label class="form-label" for="summary">Summary</label>
+        <InputTextArea class="form-control" @bind-Value="BookModel.Summary" id="summary" />
+        <ValidationMessage For="@(() => BookModel.Summary)" />
+    </div>
+
+    <div class="row">
+        <label class="form-label" for="author">Author</label>
+        <InputSelect class="form-control" @bind-Value="BookModel.AuthorId" id="author">
+            <option value="">-- Select Author --</option>
+            @foreach(var author in Authors)
+            {
+                <option value="@author.Id">@author.FirstName @author.LastName</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => BookModel.AuthorId)" />
+    </div>
+
+    <div class="row">
+        <label class="form-label" for="photo">Book Cover Photo</label>
+
+        <InputFile class="form-control" OnChange="FileSelectionHandler" id="photo" />
+        <img src="@img" width="100" heigth="100" class="img-thumbnail" />
+        <p class="text-danger">@UploadFileWarning</p>       
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">
+            <span class="oi oi-plus" aria-hidden="true"></span> Add Book
+        </button>
+
+        <button type="button" @onclick="BackToList" class="btn btn-outline-secondary">
+            <span class="oi oi-arrow-left" aria-hidden="true"></span> Back
+        </button>
+    </div>
+
+</EditForm>
+
+@code {
+    private BookCreateDto BookModel = new();
+    private List<AuthorReadOnlyDto> Authors = new();
+
+    private string UploadFileWarning = string.Empty;
+    private string img = string.Empty;
+    private long maxFileSize = 1024 * 1024 * 5;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await authorService.Get();
+        if(response.Success)
+        {
+            Authors = response.Data;
+        }
+    }
+
+    private async Task BookCreateHandler()
+    {
+        var response = await bookService.Create(BookModel);
+        if(response.Success)
+        {
+            BackToList();
+        }
+    }
+
+    private async Task FileSelectionHandler(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file != null)
+        {
+            if (file.Size > maxFileSize)
+            {
+                UploadFileWarning = "This file is too big for upload.";
+                return;
+            }
+
+            var ext = System.IO.Path.GetExtension(file.Name);
+            if (!(ext.ToLower().Contains("jpg") || ext.ToLower().Contains("png") || ext.ToLower().Contains("jpeg")))
+            {
+                UploadFileWarning = "Please select a valid image file (*.jpg | *.png)";
+                return;
+            }
+
+            var byteArray = new byte[file.Size];
+            await file.OpenReadStream().ReadAsync(byteArray);
+            string imageType = file.ContentType;
+            string base64string = Convert.ToBase64String(byteArray);
+
+            BookModel.ImageData = base64string;
+            BookModel.ImageName = file.Name;
+            img = $"data:{imageType}; base64, {base64string}";
+        }
+    }
+
+    private void BackToList()
+    {
+        navManager.NavigateTo("/books/");
+    }
+}

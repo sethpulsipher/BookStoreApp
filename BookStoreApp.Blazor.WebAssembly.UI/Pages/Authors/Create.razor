@@ -1,0 +1,62 @@
+﻿@page "/authors/create/"
+@inject IAuthorService authorService
+@inject NavigationManager navManager
+@attribute [Authorize(Roles = "Administrator")]
+
+<PageTitle>New Author</PageTitle>
+
+<h3>Create New Author</h3>
+
+<div>
+    <EditForm Model="AuthorModel" OnValidSubmit="HandleCreateAuthor">
+        <DataAnnotationsValidator/>
+        <ValidationSummary/>
+
+        <div class="form-group">
+            <label class="form-label" for="firstName">First Name</label>
+            <InputText class="form-control" @bind-Value="AuthorModel.FirstName" id="lastName"/>
+            <ValidationMessage For="@(() => AuthorModel.FirstName)" />
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="lastName">Last Name</label>
+            <InputText class="form-control" @bind-Value="AuthorModel.LastName" id="lastName"/>
+            <ValidationMessage For="@(() => AuthorModel.LastName)" />
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="bio">Bio</label>
+            <InputTextArea class="form-control" @bind-Value="AuthorModel.Bio" id="bio"/>
+            <ValidationMessage For="@(() => AuthorModel.Bio)" />
+        </div>
+
+        <div>
+            <button type="submit" class="mt-2 btn btn-primary">
+                <span class="oi oi-pencil" aria-hidden="true"></span> Create
+            </button>
+
+            <button type="button" @onclick="BackToList" class="mt-2 btn btn-outline-secondary">
+                <span class="oi oi-arrow-left" aria-hidden="true"></span> Back
+            </button>
+        </div>
+
+    </EditForm>
+</div>
+
+@code {
+    private AuthorCreateDto AuthorModel = new();
+
+    private async Task HandleCreateAuthor()
+    {
+        var response = await authorService.Create(AuthorModel);
+        if (response.Success)
+        {
+            BackToList();
+        }
+    }
+
+    private void BackToList()
+    {
+        navManager.NavigateTo("/authors/");
+    }
+}

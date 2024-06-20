@@ -1,0 +1,85 @@
+﻿@page "/books/details/{id:int}"
+@inject IBookService bookService
+@inject NavigationManager navManager
+
+<PageTitle>Book Details</PageTitle>
+
+<h3>Details</h3>
+
+<EditForm Model="BookModel">
+    <fieldset disabled="true">     
+        <div class="row">
+            <label class="form-label" for="title">Title</label>
+            <InputText @bind-Value="BookModel.Title" id="title" />
+        </div>
+
+        <div class="row">
+            <label class="form-label" for="author">Author</label>
+            <InputText @bind-Value="BookModel.AuthorName" id="author" />
+        </div>
+
+        <div class="row">
+            <label class="form-label" for="isbn">ISBN</label>
+            <InputText @bind-Value="BookModel.Isbn" id="isbn" />
+        </div>
+
+        <div class="row">
+            <label class="form-label" for="price">Price</label>
+            <InputNumber @bind-Value="BookModel.Price" id="price" />
+        </div>
+
+        <div class="row">
+            <label class="form-label" for="year">Year</label>
+            <InputNumber @bind-Value="BookModel.Year" id="year" />
+        </div>
+
+        <div class="row">
+            <label class="form-label" for="summary">Summary</label>
+            <InputTextArea @bind-Value="BookModel.Summary" id="summary" />
+        </div>
+
+        <div class="row">
+            <label class="form-label" for="photo">Book Cover Photo</label>
+            <img src="@BookModel.Image" class="img-thumbnail" style="width: 286px; height: 164px;" />
+        </div>
+    </fieldset>
+
+    <div class="row row-cols-auto">
+        <AuthorizeView Roles="Administrator" Context="bookContext">
+            <button @onclick="GoToEdit" class="btn btn-warning">
+                <span class="oi oi-pencil" aria-hidden="true"></span> Edit Book
+            </button>
+        </AuthorizeView>
+
+        <button type="button" @onclick="BackToList" class="btn btn-outline-secondary">
+            <span class="oi oi-arrow-left" aria-hidden="true"></span> Back
+        </button>
+    </div>
+
+</EditForm>
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+
+    private BookDetailsDto BookModel = new();
+
+    protected async override Task OnInitializedAsync()
+    {
+        var response = await bookService.Get(id);
+        if(response.Success)
+        {
+            BookModel = response.Data;
+        }
+    }
+
+    private void BackToList()
+    {
+        navManager.NavigateTo("/books/");
+    }
+
+    private void GoToEdit()
+    {
+        navManager.NavigateTo($"/books/update/{BookModel.Id}");
+    }
+}
