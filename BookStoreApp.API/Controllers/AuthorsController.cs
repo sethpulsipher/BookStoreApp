@@ -26,7 +26,7 @@ namespace BookStoreApp.API.Controllers
 
         }
 
-        //GET : Retrieving info
+        //GET : api/authors/?startindex=0&pagesize=15
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AuthorReadOnlyDto>>> GetAuthors()
         {
@@ -148,7 +148,7 @@ namespace BookStoreApp.API.Controllers
                 var author = await _context.Authors.FindAsync(id);
                 if (author == null)
                 {
-                    _logger.LogWarning($"Record Not Found: {nameof(DeleteAuthor)} - ID: {id}");   
+                    _logger.LogWarning($"Record Not Found: {nameof(DeleteAuthor)} - ID: {id}");
                     return NotFound();
                 }
 

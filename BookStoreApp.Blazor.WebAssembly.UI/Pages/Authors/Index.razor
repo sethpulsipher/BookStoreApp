@@ -55,7 +55,7 @@ else
                                     <span class="oi oi-book" aria-hidden="true"></span> Details
                                 </a>
 
-                                <AuthorizeView Roles="Administrator">
+                                <AuthorizeView Roles="Administrator" Context="authContext">
                                     <a class="btn btn-warning m-1" href="/authors/update/@author.Id">
                                         <span class="oi oi-pencil" aria-hidden="true"></span> Edit
                                     </a>

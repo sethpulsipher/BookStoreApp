@@ -26,6 +26,11 @@ namespace BookStoreApp.Blazor.Server.UI.Services.Base
             {
                 return new Response<Guid>() { Message = "Validation errors have occured.", ValidationErrors = apiException.Response, Success = false };
             }
+            //401
+            if (apiException.StatusCode == 401)
+            {
+                return new Response<Guid>() { Message = "Login Failed.", Success = false };
+            }
             //404
             if (apiException.StatusCode == 404)
             {
