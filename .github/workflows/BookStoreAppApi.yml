@@ -2,7 +2,7 @@ name: Build and deploy .NET Core application to Web App BookStoreAppApi
 on:
   push:
     branches:
-    - Detached at d5896798
+    - master
 env:
   AZURE_WEBAPP_NAME: BookStoreAppApi
   AZURE_WEBAPP_PACKAGE_PATH: BookStoreApp.API\publish
