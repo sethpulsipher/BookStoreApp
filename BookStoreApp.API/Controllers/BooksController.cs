@@ -35,10 +35,10 @@ namespace BookStoreApp.API.Controllers
             {
                 // Get all books with author's first and last name combined
                 var books = await _context.Books
-                    .Include(q =>  q.Author)
+                    .Include(q => q.Author)
                     .ProjectTo<BookReadOnlyDto>(_mapper.ConfigurationProvider)
                     .ToListAsync();
-                
+
                 return Ok(books);
             }
             catch (Exception ex)
@@ -63,7 +63,7 @@ namespace BookStoreApp.API.Controllers
                     _logger.LogWarning($"Record Not Found: {nameof(GetBook)} - ID: {id}");
                     return NotFound();
                 }
-                
+
                 return book;
             }
             catch (Exception ex)
@@ -104,7 +104,7 @@ namespace BookStoreApp.API.Controllers
                     var path = $"{_webHostEnvironment.WebRootPath}\\bookcoverimages\\{picName}";
 
                     // If path exists delete the path   
-                    if(System.IO.File.Exists(path))
+                    if (System.IO.File.Exists(path))
                     {
                         System.IO.File.Delete(path);
                     }

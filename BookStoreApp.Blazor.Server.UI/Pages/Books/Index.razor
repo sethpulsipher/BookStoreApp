@@ -50,7 +50,7 @@ else
                     @foreach (var book in BooksList)
                     {
                         <tr>
-                            <td><img src="@book.Image" width="100" height="100" alt="@book.Title"/></td>
+                            <td><img src="@book.Image" width="120" height="170" alt="@book.Title" /></td>
                             <td>@book.Title</td>
                             <td>@book.Price.ToString("C")</td>
                             <td><a class="btn btn-link" href="/authors/details/@book.AuthorId">@book.AuthorName</a></td>
