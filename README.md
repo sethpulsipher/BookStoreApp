@@ -38,3 +38,31 @@ This project is a web-based bookstore application built with Blazor for the fron
 4. Run the application
    ```bash
    dotnet run
+
+## Project Structure
+
+- `BookStore.Client`: Blazor WebAssembly frontend
+- `BookStore.Server`: ASP.NET Core Web API backend
+- `BookStore.Shared`: Shared models and interfaces
+
+## API Endpoints
+
+- `GET /api/books`: Retrieve all books
+- `GET /api/books/{id}`: Retrieve a specific book
+- `POST /api/books`: Add a new book
+- `PUT /api/books/{id}`: Update an existing book
+- `DELETE /api/books/{id}`: Delete a book
+
+## Contributing
+
+[Include guidelines for contributing to your project]
+
+## License
+
+[Include your chosen license information]
+
+## Contact
+
+[Your Name] - [Your Email]
+
+Project Link: [https://github.com/yourusername/bookstore-project](https://github.com/yourusername/bookstore-project)
