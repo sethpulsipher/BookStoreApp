@@ -4,7 +4,6 @@
 
 <PageTitle>Books</PageTitle>
 
-<h3>Books</h3>
 
 @if (!response.Success)
 {
@@ -16,23 +15,25 @@ else
 {
     @if (BooksList == null)
     {
-        <div class="alert alert-info">
-            <h3>Loading...</h3>
-        </div>
+        <div class="spinner"></div>
     }
     else
     {
-        <div class="row mb-1">
-            <div class="col">
-                <h3>Books</h3>
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>Books</h1>
             </div>
-            <div class="col text-end">
-                <AuthorizeView Roles="Administrator">
-                    <a class="btn btn-outline-dark mb-3" href="/books/create/">
-                        <span class="oi oi-plus" aria-hidden="true"></span> New Book
+        </div>
+
+        <div class="row mb-3">
+            <AuthorizeView Roles="Administrator">
+                @* Add New Book *@
+                <div class="col">
+                    <a class="btn btn-outline-primary" href="/books/create/">
+                        <span class="oi oi-plus" aria-hidden="true"></span> Add new Book
                     </a>
-                </AuthorizeView>
-            </div>
+                </div>
+            </AuthorizeView>
         </div>
 
         <div class="table-responsive">
@@ -42,8 +43,8 @@ else
                         <th scope="col">Image</th>
                         <th scope="col">Title</th>
                         <th scope="col">Price</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col" class="text-center">Author</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,14 +54,14 @@ else
                             <td><img src="@book.Image" width="120" height="170" alt="@book.Title" /></td>
                             <td>@book.Title</td>
                             <td>@book.Price.ToString("C")</td>
-                            <td><a class="btn btn-link" href="/authors/details/@book.AuthorId">@book.AuthorName</a></td>
-                            <td>
+                            <td class="text-center"><a class="btn btn-link" href="/authors/details/@book.AuthorId">@book.AuthorName</a></td>
+                            <td class="text-end">
                                 <a class="btn btn-primary m-1" href="/books/details/@book.Id">
                                     <span class="oi oi-book" aria-hidden="true"></span> Details
                                 </a>
 
                                 <AuthorizeView Roles="Administrator">
-                                    <a class="btn btn-warning m-1" href="/books/update/@book.Id">
+                                    <a class="btn btn-warning m-1" href="/books/edit/@book.Id">
                                         <span class="oi oi-pencil" aria-hidden="true"></span> Edit
                                     </a>
 

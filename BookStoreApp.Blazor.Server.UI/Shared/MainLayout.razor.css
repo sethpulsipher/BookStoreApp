@@ -9,7 +9,23 @@ main {
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    background-color: rgb(42, 44, 51);
+}
+
+.profile-link {
+    border: solid 1px black;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.login-link {
+    text-decoration: none;
+    color: black;
 }
 
 .top-row {
@@ -21,6 +37,31 @@ main {
     align-items: center;
 }
 
+.top-div-authorized {
+    display: flex;
+
+}
+
+.account-button {
+    border-radius: 10px;
+    font-family: Georgia, serif;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    border: 2px solid black;
+    display: inline-block;
+}
+
+    .myButton:hover {
+        background: #1C6EA4;
+    }
+
+    .myButton:active {
+        background: #144E75;
+    }
+
     .top-row ::deep a, .top-row .btn-link {
         white-space: nowrap;
         margin-left: 1.5rem;
@@ -30,6 +71,8 @@ main {
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+
 
 @media (max-width: 640.98px) {
     .top-row:not(.auth) {

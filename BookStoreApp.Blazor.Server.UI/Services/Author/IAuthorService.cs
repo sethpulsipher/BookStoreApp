@@ -1,6 +1,6 @@
-﻿using BookStoreApp.Blazor.WebAssembly.UI.Services.Base;
+﻿using BookStoreApp.Blazor.Server.UI.Services.Base;
 
-namespace BookStoreApp.Blazor.WebAssembly.UI.Services
+namespace BookStoreApp.Blazor.Server.UI.Services.Author
 {
     public interface IAuthorService
     {
@@ -9,6 +9,6 @@ namespace BookStoreApp.Blazor.WebAssembly.UI.Services
         Task<Response<AuthorUpdateDto>> GetForUpdate(int id);
         Task<Response<int>> Create(AuthorCreateDto author);
         Task<Response<int>> Edit(int id, AuthorUpdateDto author);
-        Task<Response<int>> Delete(int id); 
+        Task<Response<int>> Delete(int id);
     }
 }

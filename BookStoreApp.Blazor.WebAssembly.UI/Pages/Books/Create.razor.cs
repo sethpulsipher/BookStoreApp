@@ -1,5 +1,6 @@
-﻿using BookStoreApp.Blazor.WebAssembly.UI.Services;
+﻿using BookStoreApp.Blazor.WebAssembly.UI.Services.Author;
 using BookStoreApp.Blazor.WebAssembly.UI.Services.Base;
+using BookStoreApp.Blazor.WebAssembly.UI.Services.Book;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;

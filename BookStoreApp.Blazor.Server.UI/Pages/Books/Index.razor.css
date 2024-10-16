@@ -1,0 +1,22 @@
+﻿.hide {
+    display: none;
+    position: relative;
+}
+
+.display-hidden:hover + .hide {
+    display: block;
+    text-align: center;
+    background-color: #D3D3D3;
+    color: black;
+    max-width: 125px;
+    border-radius: 10px;
+}
+
+.controls {
+    margin-bottom: 75px;
+}
+
+.absolute {
+    position: absolute;
+}
+

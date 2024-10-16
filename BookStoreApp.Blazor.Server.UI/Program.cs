@@ -1,9 +1,10 @@
 using Blazored.LocalStorage;
 using BookStoreApp.Blazor.Server.UI.Configurations;
 using BookStoreApp.Blazor.Server.UI.Providers;
-using BookStoreApp.Blazor.Server.UI.Services;
 using BookStoreApp.Blazor.Server.UI.Services.Authentication;
+using BookStoreApp.Blazor.Server.UI.Services.Author;
 using BookStoreApp.Blazor.Server.UI.Services.Base;
+using BookStoreApp.Blazor.Server.UI.Services.Book;
 using Microsoft.AspNetCore.Components.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,8 @@ builder.Services.AddAutoMapper(typeof(MapperConfig));
 builder.Services.AddScoped<ApiAuthenticationStateProvider>();
 // Add's this ApiAuthentication class ^ to the default one?
 builder.Services.AddScoped<AuthenticationStateProvider>(p => p.GetRequiredService<ApiAuthenticationStateProvider>());
+
+builder.Services.AddAuthentication();
 
 var app = builder.Build();
 

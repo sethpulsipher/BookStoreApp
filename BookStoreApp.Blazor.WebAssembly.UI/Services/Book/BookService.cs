@@ -2,7 +2,7 @@
 using Blazored.LocalStorage;
 using BookStoreApp.Blazor.WebAssembly.UI.Services.Base;
 
-namespace BookStoreApp.Blazor.WebAssembly.UI.Services
+namespace BookStoreApp.Blazor.WebAssembly.UI.Services.Book
 {
     public class BookService : BaseHttpService, IBookService
     {

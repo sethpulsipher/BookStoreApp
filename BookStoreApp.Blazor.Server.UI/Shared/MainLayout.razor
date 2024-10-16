@@ -1,7 +1,16 @@
 ﻿@inherits LayoutComponentBase
 
+@* Required *@
+<MudThemeProvider />
+<MudPopoverProvider />
 
-<PageTitle>Alexandria Online</PageTitle>
+@* Needed for dialogs *@
+<MudDialogProvider />
+
+@* Needed for snackbars *@
+<MudSnackbarProvider />
+
+<PageTitle>Sethify</PageTitle>
 
 <div class="page">
     <div class="sidebar">
@@ -10,7 +19,29 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="users/login" target="_blank">About</a>
+            <AuthorizeView>
+                @* Login *@
+                <NotAuthorized>
+                    <a href="/users/login" class="login-link">
+                        <span class="oi oi-account-login" aria-hidden="true"></span> Log In
+                    </a>    
+                </NotAuthorized>
+                
+                <Authorized>
+                    @* Profile
+                    <div>
+                        <a href="user/account" class="profile-link"><span class="oi oi-person" aria-hidden="true"></span> Account</a>
+                    </div>
+
+                    *@
+
+                    @* Logout *@
+                    <a href="/users/logout" class="login-link">
+                        <span class="oi oi-account-logout" aria-hidden="true"></span> Logout
+                    </a>
+                </Authorized>
+
+            </AuthorizeView>
         </div>
 
         <article class="content px-4">

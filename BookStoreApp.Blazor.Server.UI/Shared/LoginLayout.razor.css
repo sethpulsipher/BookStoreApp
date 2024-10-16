@@ -1,0 +1,29 @@
+﻿.outline {
+    outline: solid 1px black;
+}
+
+.container {
+    display: flex;
+    gap: 4rem;
+    justify-content: center;
+    margin-top: 25vh;
+}
+
+.back-button {
+    position: absolute;
+    bottom: 1rem;
+    right: 0;
+    margin-right: 50vh;
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #1e1e1e;
+    background-color: lightgray;
+    padding-inline: 0.4em;
+    border-radius: 0.25rem;
+}
+
+.form-container {
+    width: 400px;
+    min-height: 350px;
+}
+

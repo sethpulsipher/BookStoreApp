@@ -1,6 +1,6 @@
-﻿using BookStoreApp.Blazor.Server.UI.Services.Base;
+﻿using BookStoreApp.Blazor.WebAssembly.UI.Services.Base;
 
-namespace BookStoreApp.Blazor.Server.UI.Services
+namespace BookStoreApp.Blazor.WebAssembly.UI.Services.Book
 {
     public interface IBookService
     {

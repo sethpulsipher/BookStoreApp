@@ -29,20 +29,21 @@ namespace BookStoreApp.API.Controllers
             _configuration = configuration;
         }
 
+
+
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register(UserDto userDto)
         {
-            _logger.LogInformation($"Registration Attempt for {userDto.Email}");
 
             try
             {
-                // Map ApiUser and UserDto
+                // Map ApiUser and UserDto then create a new user
                 var user = _mapper.Map<ApiUser>(userDto);
                 user.UserName = userDto.Email;
-                // Create a new user with the user password
                 var result = await _userManager.CreateAsync(user, userDto.Password);
 
+                // If something goes wrong
                 if (!result.Succeeded)
                 {
                     foreach (var error in result.Errors)
@@ -52,7 +53,9 @@ namespace BookStoreApp.API.Controllers
                     return BadRequest(ModelState);
                 }
 
+                // Create the User 
                 await _userManager.CreateAsync(user, "User");
+                _logger.LogInformation($"New User: {userDto.Email}");
                 return Accepted();
             }
             catch (Exception ex)

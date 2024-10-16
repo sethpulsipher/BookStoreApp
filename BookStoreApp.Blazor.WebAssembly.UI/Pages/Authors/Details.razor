@@ -36,23 +36,9 @@
                     <ValidationMessage For="@(() => AuthorModel.Bio)" />
                 </div>
                 
-            </fieldset>
+            </fieldset>       
 
-            <div class="row row-cols-auto mb-2">
-                <div>
-                    <AuthorizeView Roles="Administrator" Context="authContext">
-                        <button @onclick="GoToEdit" class="btn btn-outline-warning">
-                            <span class="oi oi-pencil" aria-hidden="true"></span> Edit Author
-                        </button>
-                    </AuthorizeView>
-
-                    <button type="button" @onclick="BackToList" class="btn btn-outline-secondary">
-                        <span class="oi oi-arrow-left" aria-hidden="true"></span> Back
-                    </button>
-                </div>
-            </div>
-            
-
+            @* Books *@
             @if (AuthorModel.Books == null || AuthorModel.Books.Any() == false)
             {
                 <div class="alert alert-dismissible alert-secondary">
@@ -79,6 +65,21 @@
                     }
                 </div>
             }
+
+            @* Buttons *@
+            <div class="row row-cols-auto mb-2">
+                <div>
+                    <AuthorizeView Roles="Administrator" Context="authContext">
+                        <button @onclick="GoToEdit" class="btn btn-outline-warning">
+                            <span class="oi oi-pencil" aria-hidden="true"></span> Edit Author
+                        </button>
+                    </AuthorizeView>
+
+                    <button type="button" @onclick="BackToList" class="btn btn-outline-secondary">
+                        <span class="oi oi-arrow-left" aria-hidden="true"></span> Back
+                    </button>
+                </div>
+            </div>
 
         </EditForm>
     </div>

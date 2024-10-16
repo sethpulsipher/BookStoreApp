@@ -11,7 +11,6 @@ namespace BookStoreApp.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class AuthorsController : ControllerBase
     {
         private readonly BookStoreDbContext _context;
@@ -23,7 +22,6 @@ namespace BookStoreApp.API.Controllers
             _context = context;
             _mapper = mapper;
             _logger = logger;
-
         }
 
         //GET : api/authors/?startindex=0&pagesize=15

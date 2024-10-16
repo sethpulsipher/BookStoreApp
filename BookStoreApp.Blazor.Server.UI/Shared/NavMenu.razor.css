@@ -1,16 +1,16 @@
 .navbar-toggler {
     background-color: rgba(255, 255, 255, 0.1);
 }
-
+/* the top part of navbar - darker shaded */
 .top-row {
     height: 3.5rem;
     background-color: rgba(0,0,0,0.4);
 }
-
+/* brand/text at top of navbar  */
 .navbar-brand {
     font-size: 1.1rem;
 }
-
+/*  */
 .oi {
     width: 2rem;
     font-size: 1.1rem;
