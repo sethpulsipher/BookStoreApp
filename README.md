@@ -62,6 +62,6 @@ This project is a web-based bookstore application built with Blazor for the fron
 
 ## Contact
 
-[Your Name] - [Your Email]
+Seth Pulsipher - sethify.dev@gmail.com
 
 Project Link: [https://github.com/yourusername/bookstore-project](https://github.com/yourusername/bookstore-project)
