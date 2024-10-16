@@ -13,16 +13,15 @@ This project is a web-based bookstore application built with Blazor for the fron
 
 ## Technologies Used
 
-- **Frontend**: Blazor WebAssembly
+- **Frontend**: Blazor
 - **Backend**: ASP.NET Core Web API
-- **Database**: [Your database technology, e.g., SQL Server, PostgreSQL]
+- **Database**: SQL Server
 
 ## Getting Started
 
 ### Prerequisites
 
 - .NET 6.0 SDK or later
-- [Any other prerequisites]
 
 ### Installation
 
