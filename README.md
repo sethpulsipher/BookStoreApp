@@ -3,6 +3,8 @@
 This project is a web-based bookstore application built with Blazor for the frontend and a backend API for CRUD operations.
 # BookStore
 
+
+
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Features](#features)
@@ -14,11 +16,15 @@ This project is a web-based bookstore application built with Blazor for the fron
 - [License](#license)
 - [Contact](#contact)
 
+
+
 ## Project Overview
 Coreys Knick Knacks (CKK) is a ficticious shop that was used as a capstone project to learn C# / dotnet. 
 This project includes TWO types of applications:
 - Inventory Management Software built to run on a Windows Machine.
 - Blazor Web App as a consumer/client facing product.
+
+
 
 ## Features
 
@@ -33,6 +39,8 @@ This project includes TWO types of applications:
 - Feature 2
 - Feature 3
 
+
+
 ## Technologies Used
 
 - **Frontend**: Blazor
@@ -42,6 +50,8 @@ This project includes TWO types of applications:
    - Authentication -> JWT Bearer Token
    - NSwag (client code generator)
 - **Database**: SQL Server
+
+
 
 ## Getting Started
 
@@ -59,6 +69,8 @@ This project includes TWO types of applications:
 4. Run the application
    ```bash
    dotnet run
+
+
 
 ## Project Structure
 
