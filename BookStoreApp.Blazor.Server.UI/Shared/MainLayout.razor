@@ -2,7 +2,6 @@
 
 @* Required *@
 <MudThemeProvider />
-<MudPopoverProvider />
 
 @* Needed for dialogs *@
 <MudDialogProvider />
@@ -12,40 +11,51 @@
 
 <PageTitle>Sethify</PageTitle>
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
 
-    <main>
-        <div class="top-row px-4">
-            <AuthorizeView>
-                @* Login *@
-                <NotAuthorized>
-                    <a href="/users/login" class="login-link">
-                        <span class="oi oi-account-login" aria-hidden="true"></span> Log In
-                    </a>    
-                </NotAuthorized>
+
+<MudLayout>
+    
+    @* Top Nav *@
+    <MudAppBar>
+        @* Hamburger Menu Icon *@
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        
+        <MudSpacer></MudSpacer>
+
+        <AuthorizeView>
+            <NotAuthorized>
+                <MudIconButton Href="/users/login" Class="text-white fs-1">Login</MudIconButton>    
+            </NotAuthorized>
                 
-                <Authorized>
-                    @* Profile
-                    <div>
-                        <a href="user/account" class="profile-link"><span class="oi oi-person" aria-hidden="true"></span> Account</a>
-                    </div>
+            <Authorized>
 
-                    *@
+                @* Account *@
+                <MudMenu Class="pe-1">
+                    <ActivatorContent>
+                        <MudAvatar T="string" Size="Size.Medium" Color="Color.Secondary">A</MudAvatar>
+                    </ActivatorContent>
+                    <ChildContent>
+                        <MudMenuItem Href="user/account">Account</MudMenuItem>
+                        <MudMenuItem OnClick="@Logout" Class="text-danger">Log Out</MudMenuItem>
+                    </ChildContent>
+                </MudMenu>
 
-                    @* Logout *@
-                    <a href="/users/logout" class="login-link">
-                        <span class="oi oi-account-logout" aria-hidden="true"></span> Logout
-                    </a>
-                </Authorized>
+            </Authorized>             
+        </AuthorizeView>
+           
+    
+    </MudAppBar>
 
-            </AuthorizeView>
-        </div>
-
-        <article class="content px-4">
+    @* Side Nav *@
+    <MudDrawer @bind-Open="@_drawerOpen" Elevation="1"> 
+        <NavMenu/>
+    </MudDrawer>
+    
+    @* Main Content *@
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="body">
             @Body
-        </article>
-    </main>
-</div>
+        </MudContainer>
+    </MudMainContent>
+
+</MudLayout>

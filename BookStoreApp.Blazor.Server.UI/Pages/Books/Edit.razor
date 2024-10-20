@@ -57,7 +57,7 @@
         <label class="form-label" for="photo">Book Cover Photo</label>
 
         <InputFile class="form-control" OnChange="FileSelectionHandler" id="photo" />
-        <img src="@img" class="img-thumbnail" style="max-height: 120px; max-width: 100px;" />
+        <img src="@BookModel.Image" class="img-thumbnail" />
         <p class="text-danger">@UploadFileWarning</p>
     </div>
 

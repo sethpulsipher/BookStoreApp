@@ -27,10 +27,10 @@ else
             </div>
         </div>
 
-        <div class="row mb-1">
+        <div class="row mb-3">
             <AuthorizeView Roles="Administrator">
                 <div class="col">
-                    <a class="btn" href="/authors/create/">
+                    <a href="/authors/create/">
                         <span class="oi oi-plus" aria-hidden="true"></span> Add
                     </a>
                 </div>
@@ -62,12 +62,14 @@ else
 
                                 <AuthorizeView Roles="Administrator">
                                     <a class="btn btn-warning m-1" href="/authors/edit/@author.Id">
-                                        <span class="oi oi-pencil" aria-hidden="true"></span> Edit
+                                        <span class="oi oi- oi-pencil" aria-hidden="true"></span> Edit
                                     </a>
 
                                     <button class="btn btn-danger m-1" @onclick=@(() => Delete(author.Id)) href="/authors/delete/@author.Id">
                                         <span class="oi oi-delete" aria-hidden="true"></span> Delete
                                     </button>
+
+
                                 </AuthorizeView>
                             </td>
                         </tr>

@@ -6,6 +6,7 @@ using BookStoreApp.Blazor.Server.UI.Services.Author;
 using BookStoreApp.Blazor.Server.UI.Services.Base;
 using BookStoreApp.Blazor.Server.UI.Services.Book;
 using Microsoft.AspNetCore.Components.Authorization;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,9 @@ builder.Services.AddAutoMapper(typeof(MapperConfig));
 builder.Services.AddScoped<ApiAuthenticationStateProvider>();
 // Add's this ApiAuthentication class ^ to the default one?
 builder.Services.AddScoped<AuthenticationStateProvider>(p => p.GetRequiredService<ApiAuthenticationStateProvider>());
+
+// Mud Blazor
+builder.Services.AddMudServices();
 
 builder.Services.AddAuthentication();
 

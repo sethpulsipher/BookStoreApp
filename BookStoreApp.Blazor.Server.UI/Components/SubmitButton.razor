@@ -1,0 +1,24 @@
+﻿
+<MudButton Disabled="@_processing" OnClick="Loading" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Class="bg-primary text-white">
+    @if (_processing)
+    {
+        <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+    }
+    else
+    {
+        <MudText>@text</MudText>
+    }
+</MudButton>
+
+@code {
+    private bool _processing = false;
+    [Parameter]
+    public string text { get; set; } = "Submit";
+    [Parameter]
+    public Color buttonColor { get; set; } = Color.Primary;
+
+    void Loading()
+    {
+        _processing = true;
+    }
+}

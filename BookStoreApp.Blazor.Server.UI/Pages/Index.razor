@@ -6,13 +6,13 @@
 <AuthorizeView>
     
     <Authorized>
-        <h1>Welcome back!</h1>
-        <p>You are logged in as @context?.User.Identity?.Name</p>
+        <h1 class="text-center" >Welcome back!</h1>
+        <p class="fs-3 text-center">You are logged in as <b>@context?.User.Identity?.Name</b></p>
         <p>Test Connection String: <i>@testConnection</i></p>
     </Authorized>
 
     <NotAuthorized>
-        <h1>Welcome!</h1>
+        <h1 class="text-center">Seth's Digital Library</h1>
 
         <p>You are not logged in.</p>
     </NotAuthorized>

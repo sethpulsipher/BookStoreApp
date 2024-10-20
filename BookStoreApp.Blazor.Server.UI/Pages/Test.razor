@@ -1,0 +1,84 @@
+﻿@using System.Net.Http.Json
+@inject HttpClient httpClient
+@inject IBookService bookService
+@page "/test"
+
+<h3>TestPage</h3>
+
+@* <div class="spinner"></div> *@
+
+<MudDataGrid T="BookReadOnlyDto" MultiSelection="true" Items="BooksList" SortMode="SortMode.Multiple" Filterable="true" QuickFilter="@_quickFilter"
+             Hideable="true" RowClick="@RowClicked" RowContextMenuClick="RowRightClicked" SelectedItemsChanged="@SelectedItemsChanged">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Periodic Elements</MudText>
+        <MudSpacer />
+        <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <Columns>
+        <SelectColumn T="BookReadOnlyDto" />
+        <PropertyColumn Property="x => x.Image" Title="Cover" Sortable="false" Filterable="false" />
+        <PropertyColumn Property="x => x.Title" />
+        <PropertyColumn Property="x => x.Price"/>
+        <PropertyColumn Property="x => x.AuthorName" Title="Author" />
+    </Columns>
+    <PagerContent>
+        <MudDataGridPager T="BookReadOnlyDto" />
+    </PagerContent>
+</MudDataGrid>
+
+
+
+@code {
+    private IEnumerable<BookReadOnlyDto> BooksList;
+    private string _searchString;
+    private List<string> _events = new();
+
+    private Response<List<BookReadOnlyDto>> response = new Response<List<BookReadOnlyDto>>{ Success = true };
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await bookService.Get();
+        if (response.Success)
+        {
+            BooksList = response.Data;
+        }
+    }
+
+    // quick filter - filter globally across multiple columns with the same input
+    private Func<BookReadOnlyDto, bool> _quickFilter => x =>
+    {
+        // If search is empty
+        if (string.IsNullOrWhiteSpace(_searchString))
+            return true;
+
+        // Search by title
+        if (x.Title.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        // Search by author
+        if (x.AuthorName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        if ($"{x.Title} {x.AuthorName}".Contains(_searchString))
+            return true;
+
+        return false;
+    };
+
+    // events
+    void RowClicked(DataGridRowClickEventArgs<BookReadOnlyDto> args)
+    {
+        _events.Insert(0, $"Event = RowClick, Index = {args.RowIndex}, Data = {System.Text.Json.JsonSerializer.Serialize(args.Item)}");
+    }
+
+    void RowRightClicked(DataGridRowClickEventArgs<BookReadOnlyDto> args)
+    {
+        _events.Insert(0, $"Event = RowRightClick, Index = {args.RowIndex}, Data = {System.Text.Json.JsonSerializer.Serialize(args.Item)}");
+    }
+
+    void SelectedItemsChanged(HashSet<BookReadOnlyDto> items)
+    {
+        _events.Insert(0, $"Event = SelectedItemsChanged, Data = {System.Text.Json.JsonSerializer.Serialize(items)}");
+    }
+}

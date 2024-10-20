@@ -39,8 +39,8 @@
         </div>
 
         <div class="row">
-            <label class="form-label" for="photo">Book Cover Photo</label>
-            <img src="@BookModel.Image" width="120" height="170" class="img-thumbnail" />
+            <label class="form-label" for="photo">Cover Photo</label>
+            <img src="@BookModel.Image" class="img-thumbnail" alt="@BookModel.Title Cover Photo"/>
         </div>
     </fieldset>
 
@@ -51,7 +51,7 @@
             </button>
         </AuthorizeView>
 
-        <button type="button" @onclick="BackToList" class="btn btn-outline-secondary">
+        <button type="button" @onclick="BackToList" class="btn btn-outline-secondary mx-2">
             <span class="oi oi-arrow-left" aria-hidden="true"></span> Back
         </button>
     </div>
@@ -80,6 +80,6 @@
 
     private void GoToEdit()
     {
-        navManager.NavigateTo($"/books/update/{BookModel.Id}");
+        navManager.NavigateTo($"/books/edit/{BookModel.Id}");
     }
 }
