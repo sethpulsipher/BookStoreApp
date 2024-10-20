@@ -1,3 +1,6 @@
+# Bookstore Project
+
+This project is a web-based bookstore application built with Blazor for the frontend and a backend API for CRUD operations.
 # BookStore
 
 ## Table of Contents
@@ -18,6 +21,13 @@ This project includes TWO types of applications:
 - Blazor Web App as a consumer/client facing product.
 
 ## Features
+
+- Browse books
+- Search for books
+- View book details
+- Add books to cart
+- Checkout process
+- Admin panel for managing books (add, edit, delete)
 - CKK is an all out entreprise-grade software set for running Coreys Business.
 - Inventory management tool for windows machines.
 - Feature 2
@@ -32,12 +42,30 @@ This project includes TWO types of applications:
 - Dapper
 - MS SQL Server
 
+- **Frontend**: Blazor
+- **Backend**: ASP.NET Core Web API
+- **Database**: SQL Server
+
+## Getting Started
+
+### Installation
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/yourusername/bookstore-project.git
+2. Navigate to the project directory
+   ```bash
+   cd bookstore-project
+3. Restore dependencies
+   ```bash
+   dotnet restore
+4. Run the application
+   ```bash
+   dotnet run
+
 ## Project Structure
 
 ### API
-
-Configurations
-
 Data
 - Base classes that define each object properties
 - Where DbContext is held
@@ -51,35 +79,15 @@ Models
 Static
 - Error messages
 
-## Installation
-### Prerequisites
-- Ensure you have `Software X` installed.
 
-### Steps
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/your-username/your-repository.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd your-repository
-    ```
-3. Install dependencies:
-    ```bash
-    npm install
-    ```
-4. Run the project:
-    ```bash
-    npm start
-    ```
+## API Endpoints
+- `GET /api/books`: Retrieve all books
+- `GET /api/books/{id}`: Retrieve a specific book
+- `POST /api/books`: Add a new book
+- `PUT /api/books/{id}`: Update an existing book
+- `DELETE /api/books/{id}`: Delete a book
 
-## Usage
-Provide a step-by-step guide on how to use the project. Include examples or screenshots if needed.
 
-```bash
-# Example command
-npm run example-command
-```
 ## Contributing
 1. Fork the repository.
 2. Create a new branch:
@@ -96,10 +104,12 @@ npm run example-command
     ```
 5. Submit a pull request.
 
+
 ## License
+[Include your chosen license information]
 This project is licensed under the [MIT License](LICENSE).
 
-## Contact
-- Email: your.email@example.com
-- GitHub: [your-username](https://github.com/your-username)
 
+## Contact
+Seth Pulsipher - sethify.dev@gmail.com
+Project Link: [https://github.com/yourusername/bookstore-project](https://github.com/yourusername/bookstore-project)
