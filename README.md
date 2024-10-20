@@ -37,6 +37,10 @@ This project includes TWO types of applications:
 
 - **Frontend**: Blazor
 - **Backend**: ASP.NET Core Web API
+   - Entity Framework
+   - Logging -> Serilog -> Seq
+   - Authentication -> JWT Bearer Token
+   - NSwag (client code generator)
 - **Database**: SQL Server
 
 ## Getting Started
