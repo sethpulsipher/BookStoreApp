@@ -66,7 +66,6 @@ builder.Services.AddAuthentication(options =>
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-    // Configure JWT Bearer token validation parameters, including issuer, audience, signing key, and lifetime validation.
 }).AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
@@ -80,27 +79,6 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = builder.Configuration["JwtSettings:Audience"],  // Get the valid audience from configuration.
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]))  // Use a symmetric key for signing.
     };
-})
-// Add Google authentication for OAuth-based login.
-// ClientId and ClientSecret are retrieved from the app's configuration (e.g., appsettings.json).
-.AddGoogle(options =>
-{
-    // Set the Google Client ID and Client Secret from your configuration.
-    options.ClientId = builder.Configuration["Authentication:Google:Client"];
-    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-
-    // Optionally, specify a different callback path if necessary.
-    // The default is "/signin-google", but you can change it if needed.
-    // options.CallbackPath = new PathString("/your-custom-callback");
-
-    // Specify the scopes that your application needs. 
-    // The default is only profile and email.
-    //options.Scope.Add("profile");
-    //options.Scope.Add("email");
-
-    // Optionally, add claims transformations (if you need additional claims mapping).
-    //options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
-    //options.ClaimActions.MapJsonKey("urn:google:locale", "locale", "string");
 });
 
 // Build the application (finalize the service configurations and prepare to handle HTTP requests).

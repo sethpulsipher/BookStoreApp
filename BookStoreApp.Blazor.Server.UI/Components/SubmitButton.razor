@@ -1,6 +1,6 @@
 ﻿
-<MudButton Disabled="@_processing" OnClick="Loading" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Class="bg-primary text-white">
-    @if (_processing)
+<MudButton Disabled="@loadingVar" OnClick="Loading" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Class="bg-primary text-white">
+    @if (loadingVar)
     {
         <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
     }
@@ -11,7 +11,8 @@
 </MudButton>
 
 @code {
-    private bool _processing = false;
+    [Parameter]
+    public bool loadingVar { get; set; } = false;
     [Parameter]
     public string text { get; set; } = "Submit";
     [Parameter]
@@ -19,6 +20,6 @@
 
     void Loading()
     {
-        _processing = true;
+        loadingVar = true;
     }
 }

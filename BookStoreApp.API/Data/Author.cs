@@ -11,6 +11,8 @@ public partial class Author
 
     public string? LastName { get; set; }
 
+    public string? Alias { get; set; }
+
     public string? Bio { get; set; }
 
     public virtual ICollection<Book> Books { get; set; } = new List<Book>();

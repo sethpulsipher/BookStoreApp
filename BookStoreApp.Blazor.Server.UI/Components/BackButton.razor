@@ -1,0 +1,16 @@
+﻿<button type="button" @onclick="GoBack" class="btn">
+    <span class="oi oi-arrow-left" aria-hidden="true"></span>
+</button>
+
+@code {
+    @inject NavigationManager navManager
+
+
+    [Parameter]
+    public string backLink {get; set;}
+
+    void GoBack()
+    {
+        navManager.NavigateTo(backLink);
+    }
+}

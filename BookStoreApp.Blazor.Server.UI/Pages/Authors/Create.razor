@@ -5,42 +5,47 @@
 
 <PageTitle>New Author</PageTitle>
 
-<h3>Create New Author</h3>
+<div class="container">
+    <div class="row row-cols-auto">
+        <BackButton backLink="/authors/"></BackButton>
+        <h3>Create New Author</h3>
+    </div>
 
-<div>
-    <EditForm Model="AuthorModel" OnValidSubmit="HandleCreateAuthor">
-        <DataAnnotationsValidator/>
-        <ValidationSummary/>
+    <div>
+        <EditForm Model="AuthorModel" OnValidSubmit="HandleCreateAuthor">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
 
-        <div class="form-group">
-            <label class="form-label" for="firstName">First Name</label>
-            <InputText class="form-control" @bind-Value="AuthorModel.FirstName" id="lastName"/>
-            <ValidationMessage For="@(() => AuthorModel.FirstName)" />
-        </div>
-        
-        <div class="form-group">
-            <label class="form-label" for="lastName">Last Name</label>
-            <InputText class="form-control" @bind-Value="AuthorModel.LastName" id="lastName"/>
-            <ValidationMessage For="@(() => AuthorModel.LastName)" />
-        </div>
-        
-        <div class="form-group">
-            <label class="form-label" for="bio">Bio</label>
-            <InputTextArea class="form-control" @bind-Value="AuthorModel.Bio" id="bio"/>
-            <ValidationMessage For="@(() => AuthorModel.Bio)" />
-        </div>
+            <div class="form-group">
+                <label class="form-label" for="firstName">First Name</label>
+                <InputText class="form-control" @bind-Value="AuthorModel.FirstName" id="lastName" />
+                <ValidationMessage For="@(() => AuthorModel.FirstName)" />
+            </div>
 
-        <div>
+            <div class="form-group">
+                <label class="form-label" for="lastName">Last Name</label>
+                <InputText class="form-control" @bind-Value="AuthorModel.LastName" id="lastName" />
+                <ValidationMessage For="@(() => AuthorModel.LastName)" />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="alias">Alias (AKA)</label>
+                <InputText class="form-control" @bind-Value="AuthorModel.Alias" id="alias" />
+                <ValidationMessage For="@(() => AuthorModel.Alias)" />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="bio">Bio</label>
+                <InputTextArea class="form-control" @bind-Value="AuthorModel.Bio" id="bio" />
+                <ValidationMessage For="@(() => AuthorModel.Bio)" />
+            </div>
+
             <button type="submit" class="mt-2 btn btn-primary">
                 <span class="oi oi-pencil" aria-hidden="true"></span> Create
             </button>
 
-            <button type="button" @onclick="BackToList" class="mt-2 btn btn-outline-secondary">
-                <span class="oi oi-arrow-left" aria-hidden="true"></span> Back
-            </button>
-        </div>
-
-    </EditForm>
+        </EditForm>
+    </div>
 </div>
 
 @code {

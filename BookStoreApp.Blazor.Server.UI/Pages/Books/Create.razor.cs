@@ -51,9 +51,9 @@ namespace BookStoreApp.Blazor.Server.UI.Pages.Books
                 }
 
                 var ext = System.IO.Path.GetExtension(file.Name);
-                if (!(ext.ToLower().Contains("jpg") || ext.ToLower().Contains("png") || ext.ToLower().Contains("jpeg")))
+                if (!(ext.ToLower().Contains("jpg") || ext.ToLower().Contains("png") || ext.ToLower().Contains("jpeg") || ext.ToLower().Contains("webp")))
                 {
-                    UploadFileWarning = "Please select a valid image file (*.jpg | *.png)";
+                    UploadFileWarning = "Please select a valid image file (*.jpg | *.png | *.webp)";
                     return;
                 }
 
