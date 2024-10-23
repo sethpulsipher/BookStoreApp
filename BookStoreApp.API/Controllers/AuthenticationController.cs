@@ -30,7 +30,6 @@ namespace BookStoreApp.API.Controllers
         }
 
 
-
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register(UserDto userDto)
