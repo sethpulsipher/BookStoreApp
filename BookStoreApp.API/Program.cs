@@ -89,9 +89,11 @@ var app = builder.Build();
 // Enable Swagger in Development Mode
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+
 }
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 // HTTPS Redirection
 // Enforce the use of HTTPS for all incoming requests.
