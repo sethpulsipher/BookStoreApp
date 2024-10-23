@@ -15,7 +15,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddBlazoredLocalStorage();
 // HttpClient to consume the BookStoreApp.API
-builder.Services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri("https://localhost:7206"));
+builder.Services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri(builder.Configuration["BaseAddress"]));
 
 // Authentication 
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
