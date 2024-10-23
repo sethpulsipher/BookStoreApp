@@ -94,7 +94,7 @@ namespace BookStoreApp.API.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Something went wrong in the {nameof(Login)}");
-                return Problem($"Something went wrong in the {nameof(Login)}", statusCode: 500);
+                return Problem($"Something went wrong in {nameof(Login)}", ex.ToString(), statusCode: 500);
             }
         }
 
