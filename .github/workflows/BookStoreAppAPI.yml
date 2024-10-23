@@ -6,6 +6,7 @@ on:
 env:
   AZURE_WEBAPP_NAME: BookStoreAppApi
   AZURE_WEBAPP_PACKAGE_PATH: BookStoreApp.API\publish
+  AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.BookStoreAppApi_984B }}
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 8.0.x
   WORKING_DIRECTORY: BookStoreApp.API
