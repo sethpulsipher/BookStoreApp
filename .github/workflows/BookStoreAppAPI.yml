@@ -1,4 +1,4 @@
-name: Build and deploy .NET Core application to Web App BookStoreAppApi
+name: Build & Deploy API
 on:
   push:
     branches:
