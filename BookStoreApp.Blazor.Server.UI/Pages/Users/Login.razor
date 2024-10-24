@@ -6,29 +6,28 @@
 <h3>Login</h3>
 
 
-    <EditForm Model="LoginModel" OnValidSubmit="HandleLogin">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+<EditForm Model="LoginModel" OnValidSubmit="HandleLogin">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
-        <div class="mb-3">
-            <label for="email">Email Address</label>
-            <InputText class="form-control" @bind-Value="LoginModel.Email" id="email" />
-            <ValidationMessage For="@(() => LoginModel.Email)" />
+    <div class="mb-3">
+        <label for="email">Email Address</label>
+        <InputText class="form-control" @bind-Value="LoginModel.Email" id="email" />
+        <ValidationMessage For="@(() => LoginModel.Email)" />
+    </div>
+
+    <div class="mb-4">
+        <label for="password">Password</label>
+        <InputText class="form-control" type="password" @bind-Value="LoginModel.Password" id="password" />
+        <ValidationMessage For="@(() => LoginModel.Password)" />
+    </div>
+
+    <div class="d-flex gap-3 align-items-center">
+        <div>
+            <SubmitButton loadingVar="_loading"></SubmitButton>
         </div>
-
-        <div class="mb-4">
-            <label for="password">Password</label>
-            <InputText class="form-control" type="password" @bind-Value="LoginModel.Password" id="password" />
-            <ValidationMessage For="@(() => LoginModel.Password)" />
+        <div>
+            <a class="btn btn-link" href="/users/register">Sign Up</a>
         </div>
-
-        <div class="d-flex gap-3 align-items-center">
-            <div>
-                <SubmitButton loadingVar="_loading"></SubmitButton>
-            </div>
-            <div>
-                <a class="btn btn-link" href="/users/register">Sign Up</a>
-            </div>
-        </div>
-
-    </EditForm>
+    </div>
+</EditForm>

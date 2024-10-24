@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using BookStoreApp.Blazor.Server.UI.Services.Base;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace BookStoreApp.Blazor.Server.UI.Pages.Users
 {
@@ -21,17 +22,19 @@ namespace BookStoreApp.Blazor.Server.UI.Pages.Users
         {
             try
             {
-                // register the user then navigate to login page 
+                // register the user 
                 await httpClient.RegisterAsync(RegistrationModel);
                 navManager.NavigateTo("/users/login");
             }
             catch (ApiException ex)
             {
+                // If any status code out of 200
                 if (ex.StatusCode >= 200 && ex.StatusCode <= 299)
                 {
                     navManager.NavigateTo("/users/login");
                 }
                 message = ex.Response;
+                StateHasChanged();
             }
         }
     }

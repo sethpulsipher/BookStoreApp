@@ -24,7 +24,9 @@ namespace BookStoreApp.Blazor.Server.UI.Pages.Users
                 navManager.NavigateTo("/");
             }
 
+
             _loading = false;
+            StateHasChanged();
             message = response.Message;
         }
     }
