@@ -1,7 +1,6 @@
 ﻿using BookStoreApp.Blazor.Server.UI.Services.Author;
 using BookStoreApp.Blazor.Server.UI.Services.Base;
 using BookStoreApp.Blazor.Server.UI.Services.Book;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -13,9 +12,10 @@ namespace BookStoreApp.Blazor.Server.UI.Pages.Books
         [Inject] IAuthorService authorService { get; set; }
         [Inject] NavigationManager navManager { get; set; }
 
-
         private BookCreateDto BookModel = new();
         private List<AuthorReadOnlyDto> Authors = new();
+
+        private string AcceptedFileFormats = "image/png,image/jpg,image/webp";
 
         private string UploadFileWarning = string.Empty;
         private string img = string.Empty;
@@ -38,10 +38,9 @@ namespace BookStoreApp.Blazor.Server.UI.Pages.Books
                 BackToList();
             }
         }
-
-        private async Task FileSelectionHandler(InputFileChangeEventArgs e)
+        private async Task FileSelectionHandler(InputFileChangeEventArgs eventArgs)
         {
-            var file = e.File;
+            var file = eventArgs.File;
             if (file != null)
             {
                 if (file.Size > maxFileSize)
@@ -59,12 +58,16 @@ namespace BookStoreApp.Blazor.Server.UI.Pages.Books
 
                 var byteArray = new byte[file.Size];
                 await file.OpenReadStream().ReadAsync(byteArray);
+
                 string imageType = file.ContentType;
                 string base64string = Convert.ToBase64String(byteArray);
 
+                // Populate DTO
                 BookModel.ImageData = base64string;
                 BookModel.ImageName = file.Name;
-                img = $"data:{imageType}; base64, {base64string}";
+
+                // img preview
+                img = $"data:{imageType};base64,{base64string}";
             }
         }
 

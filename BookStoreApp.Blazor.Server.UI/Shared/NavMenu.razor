@@ -1,6 +1,6 @@
 ﻿
 <MudDrawerHeader>
-    <MudText Typo="Typo.h6">BookStoreApp</MudText>
+    <MudText Typo="Typo.h6">ReadReserve</MudText>
 </MudDrawerHeader>
 <MudNavMenu>
 
@@ -9,6 +9,8 @@
     <MudNavLink Href="books/" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Book">Books</MudNavLink>
 
     <MudNavLink Href="authors/" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.People">Authors</MudNavLink>
+
+    <MudSpacer></MudSpacer>
 
     <AuthorizeView Roles="Administrator">
         <MudNavLink Href="test/" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Abc">Test</MudNavLink>

@@ -10,9 +10,7 @@
 @* Needed for snackbars *@
 <MudSnackbarProvider />
 
-<PageTitle>Sethify</PageTitle>
-
-
+<PageTitle>Read Reserve</PageTitle>
 
 <MudLayout>
     
@@ -23,17 +21,18 @@
         
         <MudSpacer></MudSpacer>
 
+        @* Items *@
         <AuthorizeView>
             <NotAuthorized>
                 <MudIconButton Href="/users/login" Class="text-white fs-1">Login</MudIconButton>    
             </NotAuthorized>
-                
+            
             <Authorized>
 
                 @* Account *@
                 <MudMenu Class="pe-1">
                     <ActivatorContent>
-                        <MudAvatar T="string" Size="Size.Medium" Color="Color.Secondary">A</MudAvatar>
+                        <MudAvatar T="string" Size="Size.Medium" Color="Color.Secondary">@context.User.Identity.Name.Substring(0,1).ToUpper()</MudAvatar>
                     </ActivatorContent>
                     <ChildContent>
                         <MudMenuItem Href="user/account">Account</MudMenuItem>

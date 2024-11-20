@@ -4,7 +4,7 @@
 
 <PageTitle>Book Details</PageTitle>
 
-<div class="container">
+@*<div class="container">
 
     <div class="row row-cols-auto">
         <BackButton backLink="/books/"></BackButton>
@@ -58,6 +58,78 @@
         </AuthorizeView>
         
 
+    </EditForm>
+</div>*@
+<BackButton backLink="/books/"></BackButton>
+
+<div class="container mt-4">
+    <div class="row mb-4 text-center">
+        <h3>Details</h3>
+    </div>
+
+    <EditForm Model="BookModel">
+            <div class="row g-4">
+
+                <div class="col-md-4 d-flex flex-column">
+                    <!-- Image Placeholder -->
+                    <div class="flex-grow-1 d-flex justify-content-center align-items-center">
+                        <label class="form-label border w-75 text-center" for="photo">
+                            <img src="@BookModel.Image" class="img-thumbnail w-100 h-100" />
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Form Fields Section -->
+                <div class="col-md-7">
+                    <div class="row g-3">
+                        <!-- Title -->
+                        <div class="col-md-6">
+                            <label class="form-label" for="title">Title</label>
+                            <input class="form-control" placeholder="@BookModel.Title" id="title" disabled/>
+                        </div>
+
+                        <!-- ISBN -->
+                        <div class="col-md-6">
+                            <label class="form-label" for="isbn">ISBN</label>
+                        <input class="form-control" placeholder="@BookModel.Isbn" id="isbn" disabled />
+                        </div>
+
+                        <!-- Price -->
+                        <div class="col-md-6">
+                            <label class="form-label" for="price">Price</label>
+                            <input class="form-control" placeholder="@BookModel.Price" id="price" disabled/>
+                        </div>
+
+                        <!-- Year -->
+                        <div class="col-md-6">
+                            <label class="form-label" for="year">Year</label>
+                        <input class="form-control" placeholder="@BookModel.Year" id="year" disabled />
+                        </div>
+
+                        <!-- Summary -->
+                        <div class="col-12">
+                            <label class="form-label" for="summary">Summary</label>
+                            <textarea class="form-control" id="summary" rows="3" disabled>@BookModel.Summary</textarea>
+                        </div>
+
+                        <!-- Author -->
+                        <div class="col-12">
+                            <label class="form-label" for="author">Author</label>
+                            <input class="form-control" placeholder="@BookModel.AuthorName" id="author" disabled />
+                        </div>
+                    </div>
+                    <AuthorizeView Roles="Administrator" Context="bookContext">
+                        <!-- Edit Button -->
+                        <div class="row mt-4">
+                            <div class="col text-center">
+                                <button @onclick="GoToEdit" class="btn btn-warning">
+                                    <span class="oi oi-pencil" aria-hidden="true"></span> Edit Book
+                                </button>
+                            </div>
+                        </div>
+                    </AuthorizeView>
+                </div>
+            </div>
     </EditForm>
 </div>
 

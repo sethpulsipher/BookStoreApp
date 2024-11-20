@@ -1,25 +1,25 @@
 ﻿
-<MudButton Disabled="@loadingVar" OnClick="Loading" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Class="bg-primary text-white">
-    @if (loadingVar)
+<MudButton Disabled="@IsLoading" OnClick="Loading" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Class="bg-primary text-white">
+    @if (IsLoading)
     {
         <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
     }
     else
     {
-        <MudText>@text</MudText>
+        <MudText>@Text</MudText>
     }
 </MudButton>
 
 @code {
     [Parameter]
-    public bool loadingVar { get; set; } = false;
+    public bool IsLoading { get; set; } = false;
     [Parameter]
-    public string text { get; set; } = "Submit";
+    public string Text { get; set; } = "Submit";
     [Parameter]
-    public Color buttonColor { get; set; } = Color.Primary;
+    public Color ButtonColor { get; set; } = Color.Primary;
 
     void Loading()
     {
-        loadingVar = true;
+        IsLoading = true;
     }
 }

@@ -6,7 +6,7 @@
 
 <PageTitle>Edit @BookModel.Title</PageTitle>
 
-<div class="container">
+@*<div class="container">
     <div class="row row-cols-auto">
         <BackButton backLink="/books/"></BackButton>
         <h3>Edit Book</h3>
@@ -73,6 +73,102 @@
 
     </EditForm>
 </div>
+*@
+
+<BackButton backLink="/books/"></BackButton>
+
+<div class="container mt-4">
+    <div class="row mb-4 text-center">
+        <h3>Edit Book</h3>
+    </div>
+
+    <EditForm Model="BookModel" OnValidSubmit="UpdateBookHandler" class="needs-validation">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="row g-4">
+            <!-- Image Upload Section -->
+            <div class="col-md-4 d-flex flex-column">
+                <!-- Image Placeholder -->
+                <div class="flex-grow-1 d-flex justify-content-center align-items-center">
+                    <label class="form-label border w-75 text-center" for="photo">
+                        <img src="@BookModel.Image" class="img-thumbnail w-100 h-100" />
+                    </label>
+                </div>
+
+                <!-- File Input at the Bottom -->
+                <div class="mt-auto text-center">
+                    <InputFile class="form-control w-auto d-inline-block" OnChange="FileSelectionHandler" id="photo"/>
+                    <p class="text-danger small mt-2">@UploadFileWarning</p>
+                </div>
+            </div>
+
+            <!-- Form Fields Section -->
+            <div class="col-md-7">
+                <div class="row g-3">
+                    <!-- Title -->
+                    <div class="col-md-6">
+                        <label class="form-label" for="title">Title</label>
+                        <InputText class="form-control" @bind-Value="BookModel.Title" id="title" />
+                        <ValidationMessage For="@(() => BookModel.Title)" />
+                    </div>
+
+                    <!-- ISBN -->
+                    <div class="col-md-6">
+                        <label class="form-label" for="isbn">ISBN</label>
+                        <InputText class="form-control" @bind-Value="BookModel.Isbn" id="isbn" />
+                        <ValidationMessage For="@(() => BookModel.Isbn)" />
+                    </div>
+
+                    <!-- Price -->
+                    <div class="col-md-6">
+                        <label class="form-label" for="price">Price</label>
+                        <InputNumber class="form-control" @bind-Value="BookModel.Price" id="price" />
+                        <ValidationMessage For="@(() => BookModel.Price)" />
+                    </div>
+
+                    <!-- Year -->
+                    <div class="col-md-6">
+                        <label class="form-label" for="year">Year</label>
+                        <InputNumber class="form-control" @bind-Value="BookModel.Year" id="year" />
+                        <ValidationMessage For="@(() => BookModel.Year)" />
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="col-12">
+                        <label class="form-label" for="summary">Summary</label>
+                        <InputTextArea class="form-control" @bind-Value="BookModel.Summary" id="summary" rows="3" />
+                        <ValidationMessage For="@(() => BookModel.Summary)" />
+                    </div>
+
+                    <!-- Author -->
+                    <div class="col-12">
+                        <label class="form-label" for="author">Author</label>
+                        <InputSelect class="form-control" @bind-Value="BookModel.AuthorId" id="author">
+                            <option value="">-- Select Author --</option>
+                            @foreach (var author in Authors)
+                            {
+                                <option value="@author.Id">
+                                    @author.FirstName
+                                    @author.LastName
+                                </option>
+                            }
+                        </InputSelect>
+                        <ValidationMessage For="@(() => BookModel.AuthorId)" />
+                    </div>
+                </div>
+                <!-- Submit Button -->
+                <div class="row mt-5">
+                    <div class="col text-center">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="oi oi-check me-1" aria-hidden="true"></span> Confirm
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+</div>
 
 @code {
     [Parameter]
@@ -133,7 +229,7 @@
 
             BookModel.ImageData = base64string;
             BookModel.ImageName = file.Name;
-            img = $"data:{imageType}; base64, {base64string}";
+            img = $"data:{imageType};base64,{base64string}";
         }
     }
 

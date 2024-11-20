@@ -94,5 +94,9 @@ a, .btn-link {
 }
 
 .img-thumbnail {
-    max-width: 300px;
+    width: 300px;
+    min-height: 400px;
+    height: 400px;
+    max-height: 450px;
 }
+
