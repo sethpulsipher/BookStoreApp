@@ -1,6 +1,7 @@
 # BookStore App
 
 This project is a web-based bookstore application built with Blazor for the frontend and a backend API for CRUD operations.
+
 Demo: https://bookstoreappblazorserver.azurewebsites.net/
 
 
