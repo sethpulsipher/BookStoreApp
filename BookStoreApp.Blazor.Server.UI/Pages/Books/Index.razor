@@ -4,7 +4,6 @@
 
 <PageTitle>Books</PageTitle>
 
-
 @if (!response.Success)
 {
     <div class="alert alert-info">
@@ -41,8 +40,8 @@ else
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Image</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Price</th>
+                        <th scope="col" class="text-center">Title</th>
+                        <th scope="col" class="text-center">Price</th>
                         <th scope="col" class="text-center">Author</th>
                         <th scope="col"></th>
                     </tr>
@@ -51,11 +50,16 @@ else
                     @foreach (var book in BooksList)
                     {
                         <tr>
+                            @* Image *@
                             <td><img src="@book.Image" width="120" height="170" alt="@book.Title" /></td>
-                            <td>@book.Title</td>
-                            <td>@book.Price.ToString("C")</td>
-                            <td class="text-center"><a class="btn btn-link" href="/authors/details/@book.AuthorId">@book.AuthorName</a></td>
-                            <td class="text-end">
+                            @* Title *@
+                            <td class="text-center align-middle">@book.Title</td>
+                            @* Price *@
+                            <td class="text-center align-middle">@book.Price.ToString("C")</td>
+                            @* Author *@
+                            <td class="text-center align-middle"><a href="/authors/details/@book.AuthorId">@book.AuthorName</a></td>
+                            @* Actions *@
+                            <td class="text-end align-middle">
                                 <a class="btn btn-primary m-1" href="/books/details/@book.Id">
                                     <span class="oi oi-book" aria-hidden="true"></span> Details
                                 </a>
@@ -83,6 +87,8 @@ else
         </div>
     }
 }
+
+
 @code {
     private List<BookReadOnlyDto> BooksList;
     private Response<List<BookReadOnlyDto>> response = new Response<List<BookReadOnlyDto>> { Success = true };

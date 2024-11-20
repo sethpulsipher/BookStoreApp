@@ -30,7 +30,7 @@
             <Authorized>
 
                 @* Account *@
-                <MudMenu Class="pe-1">
+                <MudMenu Class="pe-1" ActivationEvent="@MouseEvent.MouseOver">
                     <ActivatorContent>
                         <MudAvatar T="string" Size="Size.Medium" Color="Color.Secondary">@context.User.Identity.Name.Substring(0,1).ToUpper()</MudAvatar>
                     </ActivatorContent>
@@ -47,13 +47,13 @@
     </MudAppBar>
 
     @* Side Nav *@
-    <MudDrawer @bind-Open="@_drawerOpen" Elevation="1"> 
+    <MudDrawer @bind-Open="@_drawerOpen" Elevation="1" Variant="DrawerVariant.Persistent"> 
         <NavMenu/>
     </MudDrawer>
     
     @* Main Content *@
     <MudMainContent>
-        <MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="body">
+        <MudContainer MaxWidth="MaxWidth.Large" Class="body">
             @Body
         </MudContainer>
     </MudMainContent>

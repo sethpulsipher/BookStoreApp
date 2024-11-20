@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="16" height="16"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_166_3)">
+<g filter="url(#filter0_d_166_3)">
+<path d="M12.4902 4.46666H14C14.1841 4.46666 14.3333 4.6159 14.3333 4.79999V13.4927C14.3333 13.7624 14.0155 13.9416 13.769 13.8321C13.2389 13.5965 12.3543 13.3088 11.1961 13.3088C9.23527 13.3088 7.66667 14.4667 7.66667 14.4667C7.66667 14.4667 6.09804 13.3088 4.13725 13.3088C2.97897 13.3088 2.09437 13.5965 1.56431 13.8321C1.31779 13.9416 1 13.7624 1 13.4927V4.79999C1 4.6159 1.14924 4.46666 1.33333 4.46666H2.84314" fill="white"></path>
+<path d="M12.4902 4.46666H14C14.1841 4.46666 14.3333 4.6159 14.3333 4.79999V13.4927C14.3333 13.7624 14.0155 13.9416 13.769 13.8321C13.2389 13.5965 12.3543 13.3088 11.1961 13.3088C9.23527 13.3088 7.66667 14.4667 7.66667 14.4667C7.66667 14.4667 6.09804 13.3088 4.13725 13.3088C2.97897 13.3088 2.09437 13.5965 1.56431 13.8321C1.31779 13.9416 1 13.7624 1 13.4927V4.79999C1 4.6159 1.14924 4.46666 1.33333 4.46666H2.84314" stroke="#2C3E50" stroke-linejoin="round"></path>
+</g>
+<path d="M7.66666 4.93548C6.93326 4.00204 5.8027 3.0686 3.00078 3.0001C2.81674 2.99561 2.66666 3.14509 2.66666 3.32919C2.66666 4.69484 2.66666 9.86502 2.66666 11.3941C2.66666 11.5782 2.81676 11.7228 3.00075 11.7288C5.80269 11.8204 6.93326 13.0626 7.66666 13.9961M7.66666 4.93548C8.40006 4.00204 9.53059 3.0686 12.3325 3.0001C12.5166 2.99561 12.6667 3.14173 12.6667 3.32583C12.6667 4.8524 12.6667 9.86702 12.6667 11.3936C12.6667 11.5777 12.5166 11.7228 12.3326 11.7288C9.53066 11.8204 8.40006 13.0626 7.66666 13.9961M7.66666 4.93548V13.9961Z" fill="white"></path>
+<path d="M7.66666 4.93548C6.93326 4.00204 5.8027 3.0686 3.00078 3.0001C2.81674 2.99561 2.66666 3.14509 2.66666 3.32919C2.66666 4.69484 2.66666 9.86502 2.66666 11.3941C2.66666 11.5782 2.81676 11.7228 3.00075 11.7288C5.80269 11.8204 6.93326 13.0626 7.66666 13.9961M7.66666 4.93548C8.40006 4.00204 9.53059 3.0686 12.3325 3.0001C12.5166 2.99561 12.6667 3.14173 12.6667 3.32583C12.6667 4.8524 12.6667 9.86702 12.6667 11.3936C12.6667 11.5777 12.5166 11.7228 12.3326 11.7288C9.53066 11.8204 8.40006 13.0626 7.66666 13.9961M7.66666 4.93548V13.9961" stroke="#2C3E50" stroke-linejoin="round"></path>
+</g>
+<defs>
+<filter id="SvgjsFilter1033" x="-3.5" y="3.96666" width="22.3333" height="19" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+<feOffset dy="4"></feOffset>
+<feGaussianBlur stdDeviation="2"></feGaussianBlur>
+<feComposite in2="hardAlpha" operator="out"></feComposite>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"></feColorMatrix>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_166_3"></feBlend>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_166_3" result="shape"></feBlend>
+</filter>
+<clipPath id="SvgjsClipPath1032">
+<rect width="16" height="16" fill="white"></rect>
+</clipPath>
+</defs>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>

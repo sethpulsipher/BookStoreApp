@@ -4,49 +4,61 @@
 @attribute [Authorize(Roles = "Administrator")]
 
 <PageTitle>New Author</PageTitle>
+<BackButton backLink="/authors/"></BackButton>
 
-<div class="container">
-    <div class="row row-cols-auto">
-        <BackButton backLink="/authors/"></BackButton>
+<div class="container mt-4">
+    <div class="row mb-4 text-center">
         <h3>Create New Author</h3>
     </div>
 
-    <div>
-        <EditForm Model="AuthorModel" OnValidSubmit="HandleCreateAuthor">
-            <DataAnnotationsValidator />
-            <ValidationSummary />
+    <EditForm Model="AuthorModel" OnValidSubmit="HandleCreateAuthor" class="needs-validation">
+        <DataAnnotationsValidator />
+        <ValidationSummary class="mb-3" />
 
-            <div class="form-group">
+        <div class="row g-3">
+            <!-- First Name -->
+            <div class="col-md-6">
                 <label class="form-label" for="firstName">First Name</label>
-                <InputText class="form-control" @bind-Value="AuthorModel.FirstName" id="lastName" />
+                <InputText class="form-control" @bind-Value="AuthorModel.FirstName" id="firstName" />
                 <ValidationMessage For="@(() => AuthorModel.FirstName)" />
             </div>
 
-            <div class="form-group">
+            <!-- Last Name -->
+            <div class="col-md-6">
                 <label class="form-label" for="lastName">Last Name</label>
                 <InputText class="form-control" @bind-Value="AuthorModel.LastName" id="lastName" />
                 <ValidationMessage For="@(() => AuthorModel.LastName)" />
             </div>
+        </div>
 
-            <div class="form-group">
+        <div class="row g-3 mt-3">
+            <!-- Alias -->
+            <div class="col-12">
                 <label class="form-label" for="alias">Alias (AKA)</label>
                 <InputText class="form-control" @bind-Value="AuthorModel.Alias" id="alias" />
                 <ValidationMessage For="@(() => AuthorModel.Alias)" />
             </div>
+        </div>
 
-            <div class="form-group">
+        <div class="row g-3 mt-3">
+            <!-- Bio -->
+            <div class="col-12">
                 <label class="form-label" for="bio">Bio</label>
-                <InputTextArea class="form-control" @bind-Value="AuthorModel.Bio" id="bio" />
+                <InputTextArea class="form-control" @bind-Value="AuthorModel.Bio" id="bio" rows="4" />
                 <ValidationMessage For="@(() => AuthorModel.Bio)" />
             </div>
+        </div>
 
-            <button type="submit" class="mt-2 btn btn-primary">
-                <span class="oi oi-pencil" aria-hidden="true"></span> Create
-            </button>
-
-        </EditForm>
-    </div>
+        <div class="row mt-4">
+            <div class="col text-center">
+                <button type="submit" class="btn btn-primary">
+                    <span class="oi oi-pencil me-1" aria-hidden="true"></span> Create
+                </button>
+            </div>
+        </div>
+    </EditForm>
 </div>
+
 
 @code {
     private AuthorCreateDto AuthorModel = new();
