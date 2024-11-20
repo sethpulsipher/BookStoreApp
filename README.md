@@ -1,6 +1,7 @@
 # BookStore App
 
 This project is a web-based bookstore application built with Blazor for the frontend and a backend API for CRUD operations.
+Demo: https://bookstoreappblazorserver.azurewebsites.net/
 
 
 ## Table of Contents
@@ -17,10 +18,7 @@ This project is a web-based bookstore application built with Blazor for the fron
 
 
 ## Project Overview
-Coreys Knick Knacks (CKK) is a ficticious shop that was used as a capstone project to learn C# / dotnet. 
-This project includes TWO types of applications:
-- Inventory Management Software built to run on a Windows Machine.
-- Blazor Web App as a consumer/client facing product.
+Read Reserve is a book reserve that was made as a personal project.
 
 
 
